@@ -17,7 +17,7 @@ def get_images(queryparams, n):
         queryparams = tuple(queryparams)
         cur.execute("SELECT image FROM images INNER JOIN base ON images.pageid = base.pageid and base.querystring IN %s INNER JOIN actualimages ON actualimages.imageurl = images.imageurl ORDER BY RANDOM() LIMIT %s", (queryparams, n))
         image_sets = [bytes(row[0]) for row in cur.fetchall()]
-        print(image_sets)
+        print(image_sets) #alternatively - generators .. yield
         """
             its a mess w the encoding .... some are svgs .. some are pure bytes and then utf-8 erros when np.array() is done 
             will consider this at a later time
@@ -52,7 +52,7 @@ def get_ordered_attributes(queryparams):
         DISTINCT contributors.userid || ' - ' || contributors.username)
         contributors FROM base INNER JOIN title ON base.querystring = %s AND base.pageid = title.pageid INNER JOIN textcontent ON textcontent.pageid = title.pageid INNER JOIN contributors ON contributors.pageid = title.pageid INNER JOIN extlinks ON title.pageid = extlinks.pageid INNER JOIN internallinks ON internallinks.pageid = title.pageid  GROUP BY title.title, textcontent.textcontent ORDER BY COUNT(extlinks.extlink)/COUNT(internallinks.internallink)""", (queryparams, )) 
         print(cur.fetchall())
-        #alternatively use generators .. yield 
+        #alternatively - generators .. yield 
         print('fin')
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
