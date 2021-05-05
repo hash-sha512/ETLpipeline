@@ -8,5 +8,5 @@ or
 or
 1. pg2mysql client apparently could work since there isnt anything out of the box - views, indexes in particular
 
-the question will be answered this week on monday night RAW where John Cena defends his title taking on Sheamus. and there's no punchline thasall
+the question will be answered this week on monday night RAW where John Cena defends his title taking on Sheamus. and ... and there's no meta punchline or a cross-reference.. stupid thasall
 """
